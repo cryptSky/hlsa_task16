@@ -1,8 +1,10 @@
+# Official base image
 FROM kalilinux/kali-rolling
 
-RUN apt update && \
-    apt install hping3 fping slowhttptest siege -y && \
-    mkdir /tools
+# Apt
+RUN apt -yqq update && apt -yqq upgrade && apt -yqq autoremove && apt clean
+
+RUN apt-get install hping3 fping slowhttptest siege -y && mkdir tools
 
 WORKDIR /tools
 
